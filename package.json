@@ -1,0 +1,13 @@
+{
+  "name": "pdf-utilities",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm:frontend\" \"npm:backend\"",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && python3 run.py"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
+

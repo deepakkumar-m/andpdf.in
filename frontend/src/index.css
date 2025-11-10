@@ -1,0 +1,17 @@
+/* Minimal global styles for the app entry */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: transparent;
+}
+
+/* App-level container spacing (keeps default App.css behavior intact) */
+.app-container {
+  min-height: 100vh;
+}
