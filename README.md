@@ -280,6 +280,8 @@ npm start
 npm start
 ```
 
+<img width="2670" height="2058" alt="image" src="https://github.com/user-attachments/assets/2d0b9685-3b6c-481e-b4c9-4f1f81dd9bd5" />
+
 ---
 
 ## 🛠️ Troubleshooting
