@@ -89,7 +89,18 @@ async def startup_event():
 
 @app.get("/")
 def read_root():
-    """API root endpoint"""
+    """API root endpoint. If a frontend build exists, serve its index.html.
+    Otherwise return the API description JSON."""
+    # Serve built frontend if available
+    try:
+        if BUILD_DIR:
+            index_path = os.path.join(BUILD_DIR, "index.html")
+            if os.path.isfile(index_path):
+                return FileResponse(index_path)
+    except Exception:
+        # Fall back to API response if anything goes wrong
+        pass
+
     return {
         "message": "PDF Utilities API",
         "version": "1.0.0",
