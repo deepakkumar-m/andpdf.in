@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 import PyPDF2
 from PIL import Image
@@ -10,6 +11,11 @@ import tempfile
 from datetime import datetime
 import shutil
 import subprocess
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
 
 app = FastAPI(
     title="PDF Utilities API",
@@ -35,6 +41,29 @@ app.add_middleware(
         "X-Quality-Setting",
     ],
 )
+
+# Optional: serve a built frontend if present. Supports either a top-level
+# `frontend_build/` directory or the common `frontend/build/` created by
+# `react-scripts build`. If no build is present, the API routes behave as before.
+BUILD_DIR = None
+_candidate_dirs = [
+    os.path.join(os.path.dirname(__file__), '..', 'frontend_build'),
+    os.path.join(os.path.dirname(__file__), '..', 'frontend', 'build'),
+]
+for _d in _candidate_dirs:
+    try:
+        if os.path.isdir(_d):
+            BUILD_DIR = os.path.abspath(_d)
+            break
+    except Exception:
+        continue
+
+if BUILD_DIR:
+    # Serve static assets (js/css/images) under /static
+    static_dir = os.path.join(BUILD_DIR, 'static')
+    if os.path.isdir(static_dir):
+        app.mount('/static', StaticFiles(directory=static_dir), name='static')
+
 
 # Temporary directory for file operations
 TEMP_DIR = tempfile.gettempdir()
