@@ -1,4 +1,4 @@
-# 1️⃣ Stage 1: Build React frontend
+# === Stage 1: Build React frontend ===
 FROM node:18 AS frontend-builder
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
@@ -6,26 +6,26 @@ RUN npm install
 COPY frontend/ ./
 RUN npm run build
 
-# 2️⃣ Stage 2: Build FastAPI backend
-FROM python:3.11-slim AS backend
+# === Stage 2: Build FastAPI backend ===
+FROM python:3.11-slim
 WORKDIR /app
 
-# Install system deps (for Ghostscript)
+# Install system dependencies (Ghostscript for compression)
 RUN apt-get update && apt-get install -y ghostscript && rm -rf /var/lib/apt/lists/*
 
-# Copy backend and install Python deps
+# Copy backend files
 COPY backend/ ./backend/
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
-# 3️⃣ Copy built frontend into backend static folder
+# Copy built React frontend into a directory served by FastAPI
 COPY --from=frontend-builder /app/frontend/build ./frontend_build
 
-# 4️⃣ Create app entry script
+# Copy backend entrypoint
 COPY backend/main.py ./main.py
 
-# 5️⃣ Expose port and run FastAPI
+# Expose port for Render
 EXPOSE 8000
 
-# Serve static React files via FastAPI
+# Start FastAPI app
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
