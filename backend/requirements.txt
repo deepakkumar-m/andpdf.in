@@ -1,7 +1,4 @@
-python-multipart==0.0.6
-PyPDF2==3.0.1
-Pillow==10.1.0
-aiofiles==23.2.1
-fastapi==0.109.0
+fastapi[all]==0.109.0
 uvicorn==0.27.1
-python-multipart==0.0.9
+PyPDF2==3.0.1
+python-multipart>=0.0.12
