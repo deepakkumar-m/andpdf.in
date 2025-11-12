@@ -15,5 +15,5 @@ services:
     autoDeploy: true
     # Custom domain configuration (optional)
     domains:
-      - name: ndpdf-in.onrender.com
+      - name: andpdf-in.onrender.com
         verify: true
