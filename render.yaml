@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: pdf-utilities
+    env: docker
+    region: oregon
+    plan: free  # Upgrade to starter ($7/mo) for production use
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: ENV
+        value: production
+    # Automatic redeploy on Git push
+    autoDeploy: true
+    # Custom domain configuration (optional)
+    domains:
+      - name: ndpdf-in.onrender.com
+        verify: true

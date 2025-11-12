@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import { Upload, FileText, Loader2, Download, Merge, Minimize2, X, CheckCircle } from 'lucide-react';
 import './App.css';
 
-const API_BASE_URL =
-  process.env.REACT_APP_API_URL ||
-  (window.location.origin.includes("localhost")
-    ? "http://localhost:8000"
-    : window.location.origin);
-
+const API_BASE_URL = 
+  process.env.NODE_ENV === 'production'
+    ? '' // Empty string for same-origin requests
+    : 'http://localhost:8000';
 
 function App() {
   const [activeTab, setActiveTab] = useState('merge');
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [quality, setQuality] = useState(85);
+  const [quality, setQuality] = useState(60); // default to medium
   const [error, setError] = useState(null);
 
   const handleFileChange = (e) => {
@@ -28,7 +26,7 @@ function App() {
         setError(`File "${file.name}" is not a PDF`);
         return false;
       }
-      if (file.size > 50 * 1024 * 1024) { // 50MB limit
+      if (file.size > 50 * 1024 * 1024) {
         setError(`File "${file.name}" is too large (max 50MB)`);
         return false;
       }
@@ -112,11 +110,21 @@ function App() {
     setLoading(true);
     setError(null);
     
+    // 🔥 Convert quality % to backend level (0-3)
+    const level = (() => {
+      const q = parseInt(quality, 10);
+      if (q <= 25) return 0;
+      if (q <= 50) return 1;
+      if (q <= 75) return 2;
+      return 3;
+    })();
+
     const formData = new FormData();
     formData.append('file', files[0]);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/pdf/compress?quality=${quality}`, {
+      // 🔥 Send 'level', not 'quality'
+      const response = await fetch(`${API_BASE_URL}/api/pdf/compress?level=${level}`, {
         method: 'POST',
         body: formData,
       });
@@ -126,9 +134,10 @@ function App() {
         throw new Error(errorData.detail || 'Compression failed');
       }
 
-      const originalSize = response.headers.get('X-Original-Size');
-      const compressedSize = response.headers.get('X-Compressed-Size');
-      const reduction = response.headers.get('X-Reduction-Percentage');
+      // 🔥 Parse numeric headers (in bytes)
+      const originalSize = parseInt(response.headers.get('X-Original-Size'), 10) || 0;
+      const compressedSize = parseInt(response.headers.get('X-Compressed-Size'), 10) || 0;
+      const reduction = parseFloat(response.headers.get('X-Reduction-Percentage')) || 0;
 
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -165,14 +174,16 @@ function App() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    // Optional: revoke object URL later
+    setTimeout(() => window.URL.revokeObjectURL(result.url), 1000);
   };
 
   const formatBytes = (bytes) => {
-    if (!bytes) return '0 Bytes';
+    if (!bytes || bytes <= 0) return '0 Bytes';
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
   const switchTab = (tab) => {
