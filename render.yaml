@@ -12,7 +12,3 @@ services:
       - key: ENV
         value: production
     autoDeploy: true
-    # Custom domain configuration (optional)
-    domains:
-      - name: andpdf-in.onrender.com
-        verify: true
