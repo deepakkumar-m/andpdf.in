@@ -1,0 +1,84 @@
+[debug] [2025-11-12T01:39:58.414Z] ----------------------------------------------------------------------
+[debug] [2025-11-12T01:39:58.415Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2025-11-12T01:39:58.415Z] CLI Version:   14.24.2
+[debug] [2025-11-12T01:39:58.415Z] Platform:      darwin
+[debug] [2025-11-12T01:39:58.415Z] Node Version:  v22.21.0
+[debug] [2025-11-12T01:39:58.415Z] Time:          Tue Nov 11 2025 20:39:58 GMT-0500 (Eastern Standard Time)
+[debug] [2025-11-12T01:39:58.415Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/deepak/Documents/GitHub/andpdf.in
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2025-11-12T01:40:03.671Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-11-12T01:40:03.672Z] > authorizing via signed-in user (deepak.eeebit@gmail.com)
+[debug] [2025-11-12T01:40:03.673Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:03.673Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:03.674Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/andpdf-d [none]
+[debug] [2025-11-12T01:40:03.987Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/andpdf-d 200
+[debug] [2025-11-12T01:40:03.987Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/andpdf-d {"projectId":"andpdf-d","projectNumber":"363966247217","displayName":"andpdf-d","name":"projects/andpdf-d","resources":{"hostingSite":"andpdf-d"},"state":"ACTIVE","etag":"1_f4a3789f-980d-414c-8cef-617a7178a99d"}
+[info] i  Using project andpdf-d (andpdf-d) . 
+[info] 
+=== Dataconnect Setup
+[debug] [2025-11-12T01:40:04.000Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:04.000Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:04.000Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/andpdf-d/billingInfo [none]
+[debug] [2025-11-12T01:40:04.217Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/andpdf-d/billingInfo 200
+[debug] [2025-11-12T01:40:04.217Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/andpdf-d/billingInfo {"name":"projects/andpdf-d/billingInfo","projectId":"andpdf-d","billingAccountName":"","billingEnabled":false}
+[info] i  dataconnect: ensuring required API firebasedataconnect.googleapis.com is enabled... 
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2025-11-12T01:40:04.219Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:04.219Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:04.220Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/andpdf-d/locations/-/services [none]
+[debug] [2025-11-12T01:40:04.788Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/andpdf-d/locations/-/services 200
+[debug] [2025-11-12T01:40:04.789Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/andpdf-d/locations/-/services {}
+[info] i  Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[info] ✔  dataconnect: Detected existing apps . (web), frontend (web) 
+[debug] [2025-11-12T01:40:17.943Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:17.944Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:17.944Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/andpdf-d/locations/us-east4/services/andpdfin/schemas/main [none]
+[debug] [2025-11-12T01:40:18.227Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/andpdf-d/locations/us-east4/services/andpdfin/schemas/main 404
+[debug] [2025-11-12T01:40:18.227Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/andpdf-d/locations/us-east4/services/andpdfin/schemas/main {"error":{"code":404,"message":"Resource 'projects/andpdf-d/locations/us-east4/services/andpdfin/schemas/main' was not found","status":"NOT_FOUND","details":[{"@type":"type.googleapis.com/google.rpc.ResourceInfo","resourceName":"projects/andpdf-d/locations/us-east4/services/andpdfin/schemas/main"}]}}
+[info] ✔  Wrote dataconnect/dataconnect.yaml 
+[info] ✔  Wrote dataconnect/seed_data.gql 
+[info] ✔  Wrote dataconnect/schema/schema.gql 
+[info] ✔  Wrote dataconnect/example/connector.yaml 
+[info] ✔  Wrote dataconnect/example/queries.gql 
+[info] ✔  Wrote dataconnect/example/mutations.gql 
+[info] ✔  Wrote dataconnect/example/connector.yaml 
+[info] i  dataconnect: Installing the generated SDKs ... 
+[info] i  dataconnect: downloading dataconnect-emulator-2.17.0... {"metadata":{"emulator":{"name":"dataconnect"},"message":"downloading dataconnect-emulator-2.17.0..."}}
+[debug] [2025-11-12T01:40:18.255Z] >>> [apiv2][query] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-macos-arm64-v2.17.0 
+[debug] [2025-11-12T01:40:18.494Z] <<< [apiv2][status] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-macos-arm64-v2.17.0 200
+[debug] [2025-11-12T01:40:18.494Z] <<< [apiv2][body] GET https://storage.googleapis.com/firemat-preview-drop/emulator/dataconnect-emulator-macos-arm64-v2.17.0 [stream]
+[debug] [2025-11-12T01:40:19.012Z] defaultcredentials: writing to file /Users/deepak/.config/firebase/deepak_eeebit_gmail.com_application_default_credentials.json
+[info] ✔  dataconnect: Installed generated SDKs for . (web) 
+[info] 
+=== Firestore Setup
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-11-12T01:40:20.073Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:20.073Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:20.073Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/andpdf-d/services/firestore.googleapis.com [none]
+[debug] [2025-11-12T01:40:20.073Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/andpdf-d/services/firestore.googleapis.com x-goog-quota-user=projects/andpdf-d
+[debug] [2025-11-12T01:40:20.441Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/andpdf-d/services/firestore.googleapis.com 200
+[debug] [2025-11-12T01:40:20.442Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/andpdf-d/services/firestore.googleapis.com [omitted]
+[warn] ⚠  firestore: missing required API firestore.googleapis.com. Enabling now... 
+[debug] [2025-11-12T01:40:20.442Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:20.442Z] Checked if tokens are valid: true, expires at: 1762915041230
+[debug] [2025-11-12T01:40:20.442Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/andpdf-d/services/firestore.googleapis.com:enable [none]
+[debug] [2025-11-12T01:40:20.442Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/andpdf-d/services/firestore.googleapis.com:enable x-goog-quota-user=projects/andpdf-d
+[debug] [2025-11-12T01:40:20.802Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/andpdf-d/services/firestore.googleapis.com:enable 200
+[debug] [2025-11-12T01:40:20.802Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/andpdf-d/services/firestore.googleapis.com:enable [omitted]
